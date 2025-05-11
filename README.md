@@ -10,5 +10,20 @@ This module is a **custom version of Android's LiveData**. It behaves just like 
 
 To use this custom `LiveData` library in your project, add the following to your `build.gradle`:
 
-```kotlin
 implementation(project(":livedata"))
+
+Here’s an example of how to create and use the custom LiveData in your project:
+
+```kotlin
+//  Create a MutableLiveData instance
+val liveData = MutableLiveData<String>()
+
+// Observe the data (lifecycle-aware)
+liveData.observe(this, object : Observer<String> {
+    override fun onChanged(value: String) {
+        simpleTextView.setText(value)
+    }
+})
+
+// Set the data
+liveData.setValue("Hello lifecycle-aware LiveData!")
